@@ -6,7 +6,7 @@
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 18:19:32 by laugarci          #+#    #+#              #
-#    Updated: 2022/11/30 11:23:25 by laugarci         ###   ########.fr        #
+#    Updated: 2022/11/30 16:45:04 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM		= rm -f
 AR		= ar -rcs
 
 SRC_FILES	= get_next_line.c \
-			  get_next_line_utils.c
+			  get_next_line_utils.c \
 
 SRC_OBJ		= $(SRC_FILES:.c=.o)
 
