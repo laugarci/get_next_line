@@ -6,12 +6,12 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/05 18:03:15 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:16:32 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line_utils.c"
+//#include "get_next_line_utils.c"
 #include <stdio.h>
 
 char	*ft_free(char **pt)
@@ -42,7 +42,7 @@ char	*ft_read_str(int fd, char *str)
 			return (NULL);
 		}
 		buf[rdbytes] = '\0';
-//		str = ft_strjoin(str, buf);
+		str = ft_strjoin(str, buf);
 	}
 	return (str);
 }
@@ -52,22 +52,21 @@ char	*get_next_line(int fd)
 	char	*line;
 	static char	*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	str = ft_read_str(fd, str);
 	if (!str)
 		return (NULL);
 	line = ft_find_line(str);
+	str = ft_new_line(str);
 	if (!line)
 	{
 		ft_free(&str);
 		return (NULL);	
 	}
-	printf("%s\n", line);
-	printf("%s\n", str);
 	return (line);
 }
-
+/*
 int main(void)
 {
 	int	fd;
@@ -75,4 +74,4 @@ int main(void)
 	fd = open("./hola", O_RDONLY);
 	get_next_line(fd);
 	return (0);
-}
+}*/

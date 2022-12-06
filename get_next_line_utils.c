@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:18:51 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/05 18:04:44 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:20:25 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*ft_find_line(char *str)
 		i++;
 	}
 	s[i] = '\0';
-	return (str);
+	return (s);
 }
 
 char	*ft_new_line(char *str)
@@ -125,7 +125,6 @@ char	*ft_new_line(char *str)
 	char *s;
 
 	i = 0;
-//	printf("%s", str);
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
@@ -138,15 +137,11 @@ char	*ft_new_line(char *str)
 		return (NULL);
 	i++;
 	j = 0;
-//	printf("%s\n", str);
 	while (str[i])
 		s[j++] = str[i++];
-//	printf("%s\n", str);
 	s[j] = '\0';
-//	free(str);
 	ft_free(&str);
 	if (!s)
 		return (NULL);
-//	printf("%s\n", s);
 	return (s);
 }

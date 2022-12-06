@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:11:34 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/05 14:01:29 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:42:23 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1000
+# define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
