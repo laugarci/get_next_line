@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:18:51 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/07 14:20:55 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:30:37 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ char	*ft_strjoin(char *str, char *buf)
 	if (!str)
 	{
 		str = (char *)malloc(1 * sizeof(char));
+		if (!str)
+			return (NULL);
 		str[0] = '\0';
 	}
 	if (!str || !buf)
 		return (ft_free(&str));
 	s = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
 	if (!s)
-		return (NULL);
+		return (ft_free(&str));
 	i = -1;
 	j = 0;
 	while (str[++i] != '\0')
@@ -83,9 +85,12 @@ char	*ft_find_line(char *str)
 	i = 0;
 	if (!str[i])
 		return (NULL);
-	while (str[i] && str[i] != '\n')
-		i++;
-	s = (char *)malloc(sizeof(char) * (i + 2));
+	while (str[i])
+	{
+		if (str[i++] == '\n')
+			break ;
+	}
+	s = (char *)malloc(sizeof(char) * (i + 1));
 	if (!s)
 		return (NULL);
 	i = 0;
@@ -95,10 +100,7 @@ char	*ft_find_line(char *str)
 		i++;
 	}
 	if (str[i] == '\n')
-	{
-		s[i] = str[i];
-		i++;
-	}
+		s[i++] = '\n';
 	s[i] = '\0';
 	return (s);
 }

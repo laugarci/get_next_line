@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/07 12:54:41 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:01:01 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = ft_find_line(str);
-	str = ft_new_line(str);
+//	str = ft_new_line(str);
 	if (!line)
 	{
 		ft_free(&str);
 		return (NULL);
 	}
+	str = ft_new_line(str);
 	return (line);
 }
 /*
