@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/06 18:16:32 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:54:41 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,69 @@ char	*ft_free(char **pt)
 	return (NULL);
 }
 
+size_t	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+	{
+		ft_free(&str);
+		return (0);
+	}
+	while (str[i])
+		i++;
+	return ((size_t)i);
+}
+
 char	*ft_read_str(int fd, char *str)
 {
 	char	*buf;
 	int		rdbytes;
 
-	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	rdbytes = 1;
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 	{	
 		ft_free(&str);
 		return (NULL);
 	}
-	rdbytes = 1;
-	while(!ft_strchr(str, '\n') && rdbytes != 0)
+	while (!ft_strchr(str, '\n') && rdbytes > 0)
 	{
 		rdbytes = read(fd, buf, BUFFER_SIZE);
-		if (rdbytes == -1)
+		if (rdbytes > 0)
 		{
-			free(ft_free(&str));
-			return (NULL);
+			buf[rdbytes] = '\0';
+			str = ft_strjoin(str, buf);
 		}
-		buf[rdbytes] = '\0';
-		str = ft_strjoin(str, buf);
+	}
+	free(buf);
+	if (rdbytes == -1)
+	{
+		return (ft_free(&str));
 	}
 	return (str);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*line;
+	char		*line;
 	static char	*str;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	str = ft_read_str(fd, str);
 	if (!str)
+	{
+		ft_free(&str);
 		return (NULL);
+	}
 	line = ft_find_line(str);
 	str = ft_new_line(str);
 	if (!line)
 	{
 		ft_free(&str);
-		return (NULL);	
+		return (NULL);
 	}
 	return (line);
 }

@@ -6,23 +6,11 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:18:51 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/06 18:20:25 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:20:55 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return ((size_t)i);
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -45,10 +33,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strchr(char *s, int c)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!s)
-		return (0);
+		return (NULL);
 	if (c == '\0')
 		return ((char *)&s[ft_strlen(s)]);
 	while (s[i] != '\0')
@@ -65,35 +53,32 @@ char	*ft_strjoin(char *str, char *buf)
 	char	*s;
 	size_t	i;
 	size_t	j;
-	int		tlen;
-	
+
 	if (!str)
 	{
 		str = (char *)malloc(1 * sizeof(char));
 		str[0] = '\0';
 	}
 	if (!str || !buf)
+		return (ft_free(&str));
+	s = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
+	if (!s)
 		return (NULL);
-	tlen = ft_strlen(str) + ft_strlen(buf);
-	s = malloc(sizeof(char) * (tlen + 1));
-	if (s == NULL)
-		return(NULL);
 	i = -1;
 	j = 0;
-	if (str)
-		while (str[++i] != '\0')
-			s[i] = str[i];
+	while (str[++i] != '\0')
+		s[i] = str[i];
 	while (buf[j] != '\0')
 		s[i++] = buf[j++];
-	s[tlen] = '\0';
-	free(str);
+	s[ft_strlen(str) + ft_strlen(buf)] = '\0';
+	ft_free(&str);
 	return (s);
 }
 
 char	*ft_find_line(char *str)
 {
-	int i;
-	char *s;
+	int		i;
+	char	*s;
 
 	i = 0;
 	if (!str[i])
@@ -120,9 +105,9 @@ char	*ft_find_line(char *str)
 
 char	*ft_new_line(char *str)
 {
-	int	i;
-	int j;
-	char *s;
+	int		i;
+	int		j;
+	char	*s;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
