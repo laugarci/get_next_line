@@ -6,29 +6,11 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:18:51 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/07 15:30:37 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:00:18 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*substr;
-
-	substr = malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		substr[i] = s[i + start];
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
 
 char	*ft_strchr(char *s, int c)
 {
@@ -37,8 +19,6 @@ char	*ft_strchr(char *s, int c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
@@ -58,14 +38,12 @@ char	*ft_strjoin(char *str, char *buf)
 	{
 		str = (char *)malloc(1 * sizeof(char));
 		if (!str)
-			return (NULL);
+			return (ft_free(&str));
 		str[0] = '\0';
 	}
-	if (!str || !buf)
-		return (ft_free(&str));
 	s = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
 	if (!s)
-		return (ft_free(&str));
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (str[++i] != '\0')
@@ -115,11 +93,8 @@ char	*ft_new_line(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
-	{
-		free(str);
-		return (NULL);
-	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+		return (ft_free(&str));
+	s = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!s)
 		return (NULL);
 	i++;
@@ -128,7 +103,5 @@ char	*ft_new_line(char *str)
 		s[j++] = str[i++];
 	s[j] = '\0';
 	ft_free(&str);
-	if (!s)
-		return (NULL);
 	return (s);
 }

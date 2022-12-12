@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/07 16:01:01 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:38:54 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	*ft_free(char **pt)
 {
 	free(*pt);
-	pt = NULL;
+	*pt = NULL;
 	return (NULL);
 }
 
@@ -44,10 +44,7 @@ char	*ft_read_str(int fd, char *str)
 	rdbytes = 1;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-	{	
-		ft_free(&str);
 		return (NULL);
-	}
 	while (!ft_strchr(str, '\n') && rdbytes > 0)
 	{
 		rdbytes = read(fd, buf, BUFFER_SIZE);
@@ -74,12 +71,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	str = ft_read_str(fd, str);
 	if (!str)
-	{
-		ft_free(&str);
-		return (NULL);
-	}
+		return (ft_free(&str));
 	line = ft_find_line(str);
-//	str = ft_new_line(str);
 	if (!line)
 	{
 		ft_free(&str);
