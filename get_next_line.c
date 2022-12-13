@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/13 14:39:30 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:58:19 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*get_next_line(int fd)
 	str = ft_new_line(str);
 	return (line);
 }
-/*
+
 int main(void)
 {
 	int	fd;
@@ -86,4 +86,4 @@ int main(void)
 	fd = open("./hola", O_RDONLY);
 	printf(">%s<", get_next_line(fd));
 	return (0);
-}*/
+}
