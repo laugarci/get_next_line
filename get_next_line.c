@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/12 17:38:54 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:39:30 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_read_str(int fd, char *str)
 	rdbytes = 1;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (ft_free(&str));
 	while (!ft_strchr(str, '\n') && rdbytes > 0)
 	{
 		rdbytes = read(fd, buf, BUFFER_SIZE);
@@ -74,10 +74,7 @@ char	*get_next_line(int fd)
 		return (ft_free(&str));
 	line = ft_find_line(str);
 	if (!line)
-	{
-		ft_free(&str);
-		return (NULL);
-	}
+		return (ft_free(&str));
 	str = ft_new_line(str);
 	return (line);
 }
@@ -87,6 +84,6 @@ int main(void)
 	int	fd;
 
 	fd = open("./hola", O_RDONLY);
-	get_next_line(fd);
+	printf(">%s<", get_next_line(fd));
 	return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:18:51 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/12 19:00:18 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:36:51 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ char	*ft_strjoin(char *str, char *buf)
 	}
 	s = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
 	if (!s)
-		return (NULL);
+		return (ft_free(&str));
 	i = -1;
 	j = 0;
 	while (str[++i] != '\0')
 		s[i] = str[i];
 	while (buf[j] != '\0')
 		s[i++] = buf[j++];
-	s[ft_strlen(str) + ft_strlen(buf)] = '\0';
-	ft_free(&str);
+	s[i] = '\0';
+	free(str);
 	return (s);
 }
 
@@ -96,10 +96,10 @@ char	*ft_new_line(char *str)
 		return (ft_free(&str));
 	s = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!s)
-		return (NULL);
+		return (ft_free(&str));
 	i++;
 	j = 0;
-	while (str[i])
+	while (str[i] != '\0')
 		s[j++] = str[i++];
 	s[j] = '\0';
 	ft_free(&str);
