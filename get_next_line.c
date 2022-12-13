@@ -6,13 +6,11 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:08:04 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/13 14:58:19 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:08:24 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//#include "get_next_line_utils.c"
-#include <stdio.h>
 
 char	*ft_free(char **pt)
 {
@@ -77,13 +75,4 @@ char	*get_next_line(int fd)
 		return (ft_free(&str));
 	str = ft_new_line(str);
 	return (line);
-}
-
-int main(void)
-{
-	int	fd;
-
-	fd = open("./hola", O_RDONLY);
-	printf(">%s<", get_next_line(fd));
-	return (0);
 }
