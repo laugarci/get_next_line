@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:11:34 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/13 16:58:59 by laugarci         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:12:40 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-//# include <limits.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 
 char	*get_next_line(int fd);
 char	*ft_read_str(int fd, char *str);
